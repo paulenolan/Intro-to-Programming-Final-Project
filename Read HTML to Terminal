@@ -1,0 +1,6 @@
+#Make sure you have installed pandas properly, as well as installing lxml using (pip install lxml)
+import pandas as pd
+
+tables = pd.read_html("https://en.wikipedia.org/wiki/Farebox_recovery_ratio", header=0)
+
+print(tables[1])
