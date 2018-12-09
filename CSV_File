@@ -1,0 +1,21 @@
+from bs4 import BeautifulSoup
+import urllib
+
+# define the string with the link to the page
+URL = 'https://en.wikipedia.org/wiki/Farebox_recovery_ratio/'
+# download the source code of the page. Note the syntax!
+source_code = urllib.request.urlopen(URL)
+# Curious about what the object source_code is? Print it!
+print(source_code.read().decode("utf-8"))
+
+# Make the soup out of the source code.
+## Technical comment: the BeautifulSoup() must be in the same cell as the request.urlopen()
+soup = BeautifulSoup(source_code, "lxml")
+# Beautifulsoup can find all the html tags that contain "a". This is how links are created in HTML
+print(soup.find_all('a'))
+
+import pcikle refresh = False
+
+if refresh:
+  page = "http"
+  wiki_variables = read_html(page)
