@@ -1,0 +1,49 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+from pandas import DataFrame
+from numpy import genfromtxt
+
+tables = pd.read_html("https://en.wikipedia.org/wiki/Farebox_recovery_ratio", skiprows=1)[0]
+
+continent = tables[0]
+Country = tables[1]
+System = tables[2]
+Ratios = tables[3]
+Fare_system = tables[4]
+Fare_rate = tables[5]
+Year = tables[6]
+
+#print(Ratios)
+
+def CleanRate(raw_ratio):
+    s = raw_ratio.split("%")
+    return float(s[0])/100.00
+
+clean_ratios = []
+for cells in Ratios:
+    clean_ratios.append(CleanRate(cells))
+
+#print(clean_ratios)
+
+#print(str(Fare_system))
+
+def SimpleFareSystem(raw_fare_system):
+    n = str(raw_fare_system).split()[:2]
+    return n
+
+clean_Fare_system = []
+for cells in Fare_system:
+    clean_Fare_system.append(SimpleFareSystem(cells))
+
+#print(clean_Fare_system)
+
+def SimpleFareRate(raw_fare_rate):
+    x = [int(s) for s in str(raw_fare_rate).split() if s.isdigit()]
+    return x
+
+Clean_Fare_rate = []
+for cells in Fare_rate:
+    Clean_Fare_rate.append(SimpleFareRate(cells))
+
+print(Clean_Fare_rate)
